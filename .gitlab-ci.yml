@@ -3,13 +3,28 @@ image: docker
 services:
  - docker:dind
 
-before_script:
- - export
- - docker login registry.gitlab.com --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
+stages:
+  - build
+  - test
 
-build:
+job0:
+  stage: .pre
+  script:
+   - export
+   - docker login registry.gitlab.com --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
+
+
+job1:
+  stage: build
   script:
    - docker pull registry.gitlab.com/xcore89/skillbox:latest || true
    - docker build . --tag registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF --tag registry.gitlab.com/xcore89/skillbox:latest --cache-from registry.gitlab.com/xcore89/skillbox:latest
    - docker push registry.gitlab.com/xcore89/skillbox:latest
    - docker push registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF
+
+
+job2:
+  stage: test
+  script:
+   run:
+     - yarn test
