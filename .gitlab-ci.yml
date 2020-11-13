@@ -9,7 +9,7 @@ before_script:
 
 build:
   script:
-   - docker pull registry.gitlab.com/xcore89/skillbox:latest
-   - docker build . --tag registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF --tag registry.gitlab.com/xcore89/skillbox:latest
+   - docker pull registry.gitlab.com/xcore89/skillbox:latest || true
+   - docker build . --tag registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF --tag registry.gitlab.com/xcore89/skillbox:latest --cache-from registry.gitlab.com/xcore89/skillbox:latest
    - docker push registry.gitlab.com/xcore89/skillbox:latest
    - docker push registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF
