@@ -9,5 +9,5 @@ before_script:
 
 build:
   script:
-   - docker build . --tag registry.gitlab.com/xcore89/Skillbox
-   - docker push registry.gitlab.com/xcore89/Skillbox
+   - docker build . --tag registry.gitlab.com/xcore89/skillbox
+   - docker push registry.gitlab.com/xcore89/skillbox
