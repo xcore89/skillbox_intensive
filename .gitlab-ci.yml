@@ -3,7 +3,11 @@ image: docker
 services:
  - docker:dind
 
+before_script:
+ - export
+ - docker login registry.gitlab.com --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
+
 build:
   script:
-   - docker build . --tag flatris
-
+   - docker build . --tag registry.gitlab.com/xcore89/Skillbox
+   - docker push registry.gitlab.com/xcore89/Skillbox
