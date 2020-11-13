@@ -25,6 +25,4 @@ job1:
 
 job2:
   stage: test
-  script:
-   run:
-     - yarn test
+  script: yarn test
