@@ -18,4 +18,4 @@ stages:
    - docker push registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF
 
   stage: test
-  script: "jest" 
+  script: flow && yarn lint && jest --maxWorkers=4
