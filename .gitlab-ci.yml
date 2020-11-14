@@ -19,4 +19,4 @@ job0:
    - docker push registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF
 
   stage: test
-  script: flow && yarn lint && jest --maxWorkers=4
+  script: "flow && yarn lint && jest --maxWorkers=4"
