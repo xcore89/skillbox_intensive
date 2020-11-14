@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xcore89-deployment
+  labels:
+    app: flatris
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flatris
+  template:
+    metadata:
+      labels:
+        app: flatris
+    spec:
+      containers:
+      - name: xcore89
+        image: registry.gitlab.com/xcore89/skillbox:latest
+        ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flatris
+  labels:
+    app: flatris
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+  selector:
+    app: flatris
