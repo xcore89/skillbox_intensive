@@ -7,19 +7,17 @@ stages:
   - build
   - test
 
-job0:
   stage: build
   before_script:
    - export
    - docker login registry.gitlab.com --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
   script:
-
    - docker pull registry.gitlab.com/xcore89/skillbox:latest || true
    - docker build . --tag registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF --tag registry.gitlab.com/xcore89/skillbox:latest --cache-from registry.gitlab.com/xcore89/skillbox:latest
    - docker push registry.gitlab.com/xcore89/skillbox:latest
    - docker push registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF
 
-
-job1:
   stage: test
-  script: yarn test
+  script:
+   run: "jest" 
+   
