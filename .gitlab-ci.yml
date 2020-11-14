@@ -7,7 +7,7 @@ stages:
   - build
   - test
 
-job0:
+build:
   stage: build
   before_script:
    - export
@@ -18,5 +18,9 @@ job0:
    - docker push registry.gitlab.com/xcore89/skillbox:latest
    - docker push registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF
 
+test:
   stage: test
-  script: "echo This is test stage"
+  dependencies:
+    - build 
+  script:
+    - yarn test
