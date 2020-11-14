@@ -7,6 +7,7 @@ stages:
   - build
   - test
 
+job0:
   stage: build
   before_script:
    - export
