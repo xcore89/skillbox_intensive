@@ -21,4 +21,5 @@ build:
 test:
   stage: test 
   script:
-    - echo $CI_JOB_STAGE
+    - docker pull registry.gitlab.com/xcore89/skillbox:latest
+    - docker run yarn test
