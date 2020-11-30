@@ -19,7 +19,10 @@ build:
    - docker push registry.gitlab.com/xcore89/skillbox:$CI_BUILD_REF
 
 test:
-  stage: test 
+  stage: test
+  before_script:
+    - export
+    - docker login registry.gitlab.com --username $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD 
   script:
     - docker pull registry.gitlab.com/xcore89/skillbox:latest
     - docker run yarn test
